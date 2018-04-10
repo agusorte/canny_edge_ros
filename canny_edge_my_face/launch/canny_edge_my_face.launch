@@ -1,0 +1,25 @@
+<launch>
+
+  <!-- canny_edge_my_face.launch
+  Autor: Agustin Ortega
+  Email: aortega.jim@gmail.com -->
+
+
+ <!-- topic name -->
+ <arg name="video_topic" default="camera/image_canny" />
+
+ <!-- camera publisher -->
+ <node pkg="cv_camera" type="cv_camera_node" name="cv_camera_node" output="screen" /> 
+
+ <!-- camera edge computation -->
+ <node pkg="canny_edge_my_face" type="canny_edge_my_face_node" name="canny_edge_my_face_node" output="screen" /> 
+
+ <!-- viewer results -->
+ <node name="image_view_grid" pkg="image_view" type="image_view" respawn="false" output="screen" required="true">
+        <remap from="image" to="$(arg video_topic)"/>
+        <param name="autosize" value="true" />
+ </node>
+
+
+  
+</launch>
